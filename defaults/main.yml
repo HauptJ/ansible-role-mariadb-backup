@@ -1,0 +1,34 @@
+# @Author: Haupt Joshua <HauptJ>
+# @Date:   26-Mar-2018
+# @Email:  josh@hauptj.com
+# @Filename: main.yml
+# @Last modified by:   Haupt Joshua
+# @Last modified time: 08-Apr-2018
+
+# Default variable settings
+
+admin_name: Joshua Haupt
+admin_email: josh@hauptj.com
+
+sel_disable: true
+
+mariadb_root_password: password
+mariadb_port: 3306
+mariadb_open_port: false
+mariadb_set_root_password: true
+
+# These are the WordPress database settings
+# Create a new database for WordPress or use an existing one
+# true: create new database
+# false: upload existing database
+mariadb_new_db: true
+mariadb_db_name: testWP
+mariadb_db_user: testWPuser
+mariadb_db_user_password: 1337TestPass
+
+# filename of existing database
+# NOTE: if mariadb_new_db == false
+mariadb_db_file_name: testWP.sql
+
+# CI test, this should only be set to true for testing
+mariadb_ci_test: true

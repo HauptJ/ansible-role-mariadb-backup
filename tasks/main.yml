@@ -1,0 +1,21 @@
+---
+  # WORK IN PROGRESS
+  # Tasks to backup database
+
+- name: Dump {{ mariadb_db_name }}.sql
+  mysql_db:
+    state: dump
+    name: "{{ mariadb_db_name }}"
+    target: "/tmp/{{ mariadb_db_name }}.sql"
+    login_user: " {{ mariadb_db_user }}"
+    login_password: "{{ mariadb_db_user }}"
+
+- name: Email {{ mariadb_db_name }}.sql backup
+  mail:
+    host: localhost
+    port: 25
+    to: "{{ admin_name }} <{{ admin_email }}>"
+    subject: "Backup of {{ mariadb_db_name }} on {{ ansible_hostname }}"
+    body: "Backup of {{ mariadb_db_name }} on {{ ansible_hostname }}"
+    attach: "/tmp/{{ mariadb_db_name }}.sql"
+    secure: starttls
