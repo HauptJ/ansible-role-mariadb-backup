@@ -1,5 +1,4 @@
 ---
-  # WORK IN PROGRESS
   # Tasks to backup database
 
 - name: Dump {{ mariadb_db_name }}.sql
@@ -12,10 +11,18 @@
 
 - name: Email {{ mariadb_db_name }}.sql backup
   mail:
-    host: localhost
-    port: 25
+    host: "{{ admin_email_server }}"
+    port: 587
+    username: "{{ admin_email }}"
+    password: "{{ admin_email_password }}"
     to: "{{ admin_name }} <{{ admin_email }}>"
     subject: "Backup of {{ mariadb_db_name }} on {{ ansible_hostname }}"
     body: "Backup of {{ mariadb_db_name }} on {{ ansible_hostname }}"
     attach: "/tmp/{{ mariadb_db_name }}.sql"
-    secure: starttls
+
+- name: Copy {{ mariadb_db_name }}.sql backup to local machine
+  synchronize:
+    mode: pull
+    src: "/tmp/{{ mariadb_db_name }}.sql"
+    dest: "{{ mariadb_db_backup_dir }}/"
+  delegate_to: localhost

@@ -8,7 +8,7 @@
 # Default variable settings
 
 admin_name: Joshua Haupt
-admin_email: josh@hauptj.com
+admin_email: alice@example.com
 
 sel_disable: true
 
@@ -25,6 +25,8 @@ mariadb_new_db: true
 mariadb_db_name: testWP
 mariadb_db_user: testWPuser
 mariadb_db_user_password: 1337TestPass
+
+mariadb_db_backup_dir: databases
 
 # filename of existing database
 # NOTE: if mariadb_new_db == false
